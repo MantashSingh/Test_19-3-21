@@ -33,7 +33,10 @@ export default function () {
        {/* {!isLogin && AuthStack()}
        {MainStack()} */}
 
-       {userDataContext.isLogin?<>{MainStack()}</>:<>{AuthStack()}</>}
+       {/* {userDataContext.isLogin?<>{MainStack()}</>:<>{AuthStack()}</>} */}
+
+       {AuthStack()}
+        {MainStack()}
       </Stack.Navigator>
     </NavigationContainer>
   );

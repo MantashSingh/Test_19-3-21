@@ -1,13 +1,16 @@
 import React from 'react'
-import { View, Text , Image , StyleSheet} from 'react-native'
+import { View, Text , Image , StyleSheet, TouchableOpacity} from 'react-native'
 import imagePath from '../assets/images/imagePath'
 
 
-export default function Header({textData}) {
+export default function Header({textData , onBack}) {
+    
     return (
         <View style={{flexDirection:'row'}}>
-            <Image source={imagePath.backIcon} style={styles.backIcon} onPress={()=>this.props.navigation.navigate("Login")}
+            <TouchableOpacity onPress={()=>onBack()}>
+            <Image source={imagePath.backIcon} style={styles.backIcon} 
             />
+            </TouchableOpacity>
                 <Text style={styles.textData}>{textData}</Text>
         </View>
     )

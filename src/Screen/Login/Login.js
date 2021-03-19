@@ -53,7 +53,6 @@ isValidate = () => {
         showMessage({
             message: errorMessage,
             icon:"warning",
-
             type: "danger",
         });
         return false
@@ -139,7 +138,7 @@ checkData = () => {
     <View style={{flex: 1}}>
     <ImageBackground source={imagePath.signUpBg} style={styles.bgImage}>
       <TouchableOpacity style={styles.skipTouch}>
-        <Text style={styles.skpiText} onPress={()=>this.props.navigation.navigate("VerificationScreen")}>Skip</Text>
+        <Text style={styles.skpiText} onPress={()=>this.props.navigation.navigate("TabRoutes")}>Skip</Text>
       </TouchableOpacity>
       <View style={styles.container}>
         

@@ -1,173 +1,294 @@
-import React, { Component } from "react";
-import { Text, TouchableOpacity, View,Image , StyleSheet} from "react-native";
-import navigationStrings from "../../constants/navigationStrings";
+import React, { Component } from "react"
+import { View, Text, Image, StyleSheet, FlatList } from "react-native"
+import { TouchableOpacity } from "react-native-gesture-handler"
 
-
+import LatestDealsCard from "../../Component/LatestDealsCard"
+import navigationStrings from "../../constants/navigationStrings"
 import imagePath from "../../assets/images/imagePath"
-import * as ImagePicker from 'react-native-image-picker';
-import apis from "../../apis";
-import { userContext } from "../../context/context";
 
 
 
-export default class  LandingPage extends Component{
-    constructor(props){
-        super(props)
-        this.state={
-     
+export default class LatestDeals extends Component {
+    
+    constructor(props) {
+        super(props);
+        this.state = {
 
-           
-            image: {uri:'https://www.hayalanka.com/wp-content/uploads/2017/07/avtar-image.jpg'},
+            myData: [
+                {
+                    id: 0,
+
+                    photo: imagePath.food1,
+                    name: "Domino's Pizza",
+                    line: "Pizza , Fast Food",
+                    price1: 299,
+                    price2: 359,
+                    offer: "30% OFF",
+                    quantity:1
+
+                },
+                {
+                    id: 1,
+                    photo: imagePath.food2,
+                    name: "Domino's Pizza",
+                    line: "Pizza , Fast Food",
+                    price1: 299,
+                    price2: 359,
+                    offer: "30% OFF",
+                    quantity:1
+                },
+                {
+                    id: 2,
+                    photo: imagePath.food3,
+                    name: "Domino's Pizza",
+                    line: "Pizza , Fast Food",
+                    price1: 299,
+                    price2: 359,
+                    offer: "30% OFF",
+                    quantity:1
+                },
+                {
+                    id: 3,
+                    photo: imagePath.food1,
+                    name: "Domino's Pizza",
+                    line: "Pizza , Fast Food",
+                    price1: 299,
+                    price2: 359,
+                    offer: "30% OFF",
+                    quantity:1
+                },
+                {
+                    id: 4,
+                    photo: imagePath.food2,
+                    name: "Domino's Pizza",
+                    line: "Pizza , Fast Food",
+                    price1: 299,
+                    price2: 359,
+                    offer: "30% OFF",
+                    quantity:1
+                },
+                {
+                    id: 5,
+
+                    photo: imagePath.food3,
+                    name: "Domino's Pizza",
+                    line: "Pizza , Fast Food",
+                    price1: 299,
+                    price2: 359,
+                    offer: "30% OFF",
+                    quantity:1
+
+                },
+                {
+                    id: 6,
+                    photo: imagePath.food1,
+                    name: "Domino's Pizza",
+                    line: "Pizza , Fast Food",
+                    price1: 299,
+                    price2: 359,
+                    offer: "30% OFF",
+                    quantity:1
+                },
+                {
+                    id: 7,
+                    photo: imagePath.food2,
+                    name: "Domino's Pizza",
+                    line: "Pizza , Fast Food",
+                    price1: 299,
+                    price2: 359,
+                    offer: "30% OFF",
+                    quantity:1
+                },
+                {
+                    id: 8,
+                    photo: imagePath.food3,
+                    name: "Domino's Pizza",
+                    line: "Pizza , Fast Food",
+                    price1: 299,
+                    price2: 359,
+                    offer: "30% OFF",
+                    quantity:1
+                },
+                {
+                    id: 9,
+                    photo: imagePath.food1,
+                    name: "Domino's Pizza",
+                    line: "Pizza , Fast Food",
+                    price1: 299,
+                    price2: 359,
+                    offer: "30% OFF",
+                    quantity:1
+                },
+                {
+                    id: 10,
+                    photo: imagePath.food,
+                    name: "Domino's Pizza",
+                    line: "Pizza , Fast Food",
+                    price1: 299,
+                    price2: 359,
+                    offer: "30% OFF",
+                    quantity:1
+                },
+            ],
+
+            itemCount: 0,
+            addTocartITem: []
+
+
         }
     }
-    static contextType=userContext;
 
 
-    // chooseImage = () => {
-    //     const options = {
-    //         title: 'Select Avatar',
-    //         customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
-    //         storageOptions: {
-    //             skipBackup: true,
-    //             path: 'images',
-    //         },
-    //     };
-
-    //     ImagePicker.launchCamera(options, (response) => {
-    //         console.log('Response = ', response);
-
-    //         if (response.didCancel) {
-    //             console.log('User cancelled image picker');
-    //         } else if (response.error) {
-    //             console.log('ImagePicker Error: ', response.error);
-    //         } else if (response.customButton) {
-    //             console.log('User tapped custom button: ', response.customButton);
-    //         } else {
-    //             const source = { uri: response.uri };
-
-    //             this.setState({
-    //                 image: source,
-    //                 isMenuModalVisible:false
-    //             });
-    //         }
-    //     });
-    // };
-
-
-    chooseImageFromGallery = () => {
-
-        const options = {
-            title: 'Select Avatar',
-            customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
-            storageOptions: {
-                skipBackup: true,
-                path: 'images',
-            },
-        };
-
-        ImagePicker.launchImageLibrary(options, (response) => {
-            console.log('Response = ', response);
-
-            if (response.didCancel) {
-                console.log('User cancelled image picker');
-            } else if (response.error) {
-                console.log('ImagePicker Error: ', response.error);
-            } else if (response.customButton) {
-                console.log('User tapped custom button: ', response.customButton);
-            } else {
-                const source = { uri: response.uri };
-
-                
-                this.uploadImage(response)
-                this.setState({
-                    image: source,
-                  
-                });
-            }
-        });
-
-    };
-
-
-    uploadImage=(response)=>
-    {
-        const apiData = new FormData();
-    //    apiData.append('fileOf', 'User');
-       apiData.append('image', {
-        uri: response.uri,
-        type: response.type,
-     	  name: response.fileName
- 
-       });
-       console.log(apiData)
-       apis.uploadImage(apiData).then((res)=>console.log("succes!!")).catch((err)=>console.log("error" , err.message))
-
+    _onNextScrean = (id) => {
+        //   console.log(id)
+        const { navigation } = this.props
+        const { myData } = this.state
+        let newArray = [...myData]
+        // alert(JSON.stringify(newArray[id]))
+        navigation.navigate(navigationStrings.FOOD_DETAILS);
+        // alert(selectItem)
     }
 
 
+    buyNow = (id) => {
+        let { itemCount, addTocartITem, myData } = this.state
+        let newArray = [...myData];
+        let index = newArray.findIndex((item) => item.id == id);
+        if (!addTocartITem.includes(newArray[index])) {
+            let finalArray = [...addTocartITem, newArray[index]];
+            this.setState({
+                itemCount: itemCount + 1,
+                addTocartITem: finalArray
+            })
+        }
+    }
 
 
+    OpenFinalCart=(id)=>{
+        const { navigation } = this.props
+        const { myData ,addTocartITem ,itemCount} = this.state
+        let newArray = [...myData]
+        navigation.navigate(navigationStrings.FINAL_CART, { addTocartITem:addTocartITem , itemCount:itemCount });
 
-   
+    }
 
+    componentDidMount() {
+        const {navigation} = this.props;
+        // let {addTocartITem}=this.this
+        this.focusListener = this.props.navigation.addListener('focus', () => {
+            // alert("sdcjhsdfc")
+            if(this.props.route.params)
+            {
 
-
-
-
-    render(){
-        
-        return(
+                // alert("sdcjhsdfc")
+                let test=this.props.route.params.addTocartITem
+                this.buyNow(test.id)
+                this.props.route.params=null
+            }
+        });
+      }
+    render() {
+        const { navigation } = this.props;
+        const { myData, buyNOw } = this.state;
+        return (
 
             <View>
-                {/* <TouchableOpacity onPress={()=>this.props.navigation.navigate('Login')}> */}
+                <View style={styles.rowDirection}>
+                    <Text style={styles.footware} >FOOD DEALS</Text>
 
-                <Text style={styles.homePage}>Home Page</Text>
-                {/* </TouchableOpacity> */}
-
-
-
-
-                <TouchableOpacity  onPress={this.chooseImageFromGallery} style={styles.imageChoose}>
-                        <Image source={this.state.image}
-                            style={{ width: 120, height: 120 }} />
-
+                    <Image style={styles.icon}
+                        source={imagePath.search}
+                    />
+                    <Image style={styles.icon}
+                        source={imagePath.heart}
+                    />
+                    <TouchableOpacity  onPress={()=>this.OpenFinalCart()}>
+                    <View style={styles.cartRelative}>
+                        <View style={styles.countAbsolute}><Text>{this.state.itemCount}</Text></View>
+                        <Image style={styles.icon}
+                            source={imagePath.cart}
+                        />
+                    </View>
                     </TouchableOpacity>
+                </View>
+              
 
-                    <TouchableOpacity style={styles.logOut} onPress={this.context.onLogout}>
-                        <Text style={styles.logOutText}>Log Out !!</Text>
+                <Text style={styles.items}>xxxx Items</Text>
 
-                    </TouchableOpacity>
 
-                
+                <Image style={styles.footwareImg}
+                    source={imagePath.footware}
+                />
+
+
+                <View>
+
+
+                    <View>
+
+                        <FlatList
+                            data={myData}
+                            showsVerticalScrollIndicator={false}
+                            numColumns={2}
+                            keyExtractor={(item) => item.id}
+                            ItemSeparatorComponent={() => <View style={{ marginBottom: 10 }} />}
+                            renderItem={({ item }) => <LatestDealsCard data={item} _onNextScrean={this._onNextScrean} buyNow={this.buyNow} />}
+                        />
+                    </View>
+
+                </View>
             </View>
+
         )
     }
 }
-const styles= StyleSheet.create({
-    homePage:{
-        fontSize:25,
-        textAlign:"center",
-        marginTop:5,
-        marginBottom:10
-    },
-    imageChoose:{
-        marginLeft:'auto',
-        marginRight:'auto',
+
+const styles = StyleSheet.create({
+    rowDirection: {
+        flexDirection: "row",
+        marginTop: 10
 
     },
-    logOut:{
-        backgroundColor:"#b23b3b",
-        paddingTop:10,
-        paddingBottom:10,
-        width:300,
-        marginLeft:'auto',
-        marginRight:'auto',
-        marginTop:350
-        
+    icon: {
+        width: 30,
+        height: 30,
+        marginRight: 10,
     },
-    logOutText:{
-        textAlign:"center",
-        color:'white',
-        fontSize:20
+    footware: {
+        fontSize: 20,
+        fontWeight: "bold",
+        marginLeft: 30,
+        marginRight: 100
+
+    },
+    items: {
+        marginTop: -10,
+        marginLeft: 45,
+        color: "gray"
+
+    },
+    footwareImg: {
+        width: 350,
+        height: 50,
+        marginTop: 20,
+        marginLeft: 5
+    },
+    shoes: {
+        width: 170,
+        height: 200,
+        marginRight: 8,
+        marginLeft: 5
+    },
+    cartRelative: {
+        position:"relative",
+
+    },
+    countAbsolute:{
+        position:"absolute",
+        left:15,
+        top:2
+
     }
+
+
 })
