@@ -37,10 +37,10 @@ export default class VerificationScreen extends Component {
                     <Text style={styles.footer1}>Didn't receive the code? </Text>
                     <TouchableOpacity
           style={styles.sendOTPTouch}
-          onPress={() =>this.props.navigation.navigate("HomePage")
+          onPress={() =>this.props.navigation.navigate("TabRoutes")
             // navigation.navigate(navigationStrings.VERIFICATION_SCREEN, {mobile:"7988016778" }) 
           }>
-          <Text style={styles.sendOTPText}> Go TO HomePage</Text>
+          <Text style={styles.sendOTPText}> Go To HomePage</Text>
         </TouchableOpacity>
                 </View>
                 

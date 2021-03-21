@@ -1,5 +1,5 @@
 import React from 'react';
-import imagePath from '../assets/images/imagePath';
+import imagePath from '../constants/imagePath';
 
 
 
@@ -20,11 +20,11 @@ import navigationStrings from '../constants/navigationStrings';
 
 
 function LatestDealsCard(props) {
-    // const{screenWidth} = Dimensions.get('window').width;
-    const { data, Test, item, selectfun, deselectFun, _onNextScrean , buyNow } = props;
+    
+    const { data , buyNow } = props;
     return (
-        <View style={{flex:1}}>
-            <TouchableOpacity onPress={() => _onNextScrean(data.id)} >
+        <View >
+            
                 <View style={styles.card}>
                     <Image
                         source={data.photo}
@@ -51,7 +51,7 @@ function LatestDealsCard(props) {
                     </View>
 
                 </View>
-            </TouchableOpacity>
+           
 
             <View>
                 <TouchableOpacity style={styles.buyNow} onPress={()=>buyNow(data.id)}>
@@ -68,8 +68,8 @@ function LatestDealsCard(props) {
 } export default LatestDealsCard;
 const styles = StyleSheet.create({
     card: {
-        marginLeft: 5,
-        marginRight:5,
+        marginLeft: 2,
+        marginRight:2,
         flex:1
     },
     photo: {

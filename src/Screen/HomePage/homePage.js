@@ -4,11 +4,14 @@ import { TouchableOpacity } from "react-native-gesture-handler"
 
 import LatestDealsCard from "../../Component/LatestDealsCard"
 import navigationStrings from "../../constants/navigationStrings"
-import imagePath from "../../assets/images/imagePath"
+import imagePath from "../../constants/imagePath"
 
+import store from '../../redux/store'
+import types from "../../redux/types"
+import { connect } from "react-redux"
+const{dispatch} = store;
 
-
-export default class LatestDeals extends Component {
+class HomePage extends Component {
     
     constructor(props) {
         super(props);
@@ -17,117 +20,126 @@ export default class LatestDeals extends Component {
             myData: [
                 {
                     id: 0,
-
                     photo: imagePath.food1,
-                    name: "Domino's Pizza",
+                    name: "Domino's 1",
                     line: "Pizza , Fast Food",
                     price1: 299,
                     price2: 359,
                     offer: "30% OFF",
-                    quantity:1
+                    quantity:0
 
                 },
                 {
                     id: 1,
                     photo: imagePath.food2,
-                    name: "Domino's Pizza",
+                    name: "Domino's 2",
                     line: "Pizza , Fast Food",
                     price1: 299,
                     price2: 359,
                     offer: "30% OFF",
-                    quantity:1
+                    quantity:0
                 },
                 {
                     id: 2,
                     photo: imagePath.food3,
-                    name: "Domino's Pizza",
+                    name: "Domino's 3",
                     line: "Pizza , Fast Food",
                     price1: 299,
                     price2: 359,
                     offer: "30% OFF",
-                    quantity:1
+                    quantity:0
                 },
                 {
                     id: 3,
                     photo: imagePath.food1,
-                    name: "Domino's Pizza",
+                    name: "Domino's 4",
                     line: "Pizza , Fast Food",
                     price1: 299,
                     price2: 359,
                     offer: "30% OFF",
-                    quantity:1
+                    quantity:0
                 },
                 {
                     id: 4,
                     photo: imagePath.food2,
-                    name: "Domino's Pizza",
+                    name: "Domino's 5",
                     line: "Pizza , Fast Food",
                     price1: 299,
                     price2: 359,
                     offer: "30% OFF",
-                    quantity:1
+                    quantity:0
                 },
                 {
                     id: 5,
 
                     photo: imagePath.food3,
-                    name: "Domino's Pizza",
+                    name: "Domino's 6",
                     line: "Pizza , Fast Food",
                     price1: 299,
                     price2: 359,
                     offer: "30% OFF",
-                    quantity:1
+                    quantity:0
 
                 },
                 {
                     id: 6,
                     photo: imagePath.food1,
-                    name: "Domino's Pizza",
+                    name: "Domino's 7",
                     line: "Pizza , Fast Food",
                     price1: 299,
                     price2: 359,
                     offer: "30% OFF",
-                    quantity:1
+                    quantity:0
                 },
                 {
                     id: 7,
                     photo: imagePath.food2,
-                    name: "Domino's Pizza",
+                    name: "Domino's 8",
                     line: "Pizza , Fast Food",
                     price1: 299,
                     price2: 359,
                     offer: "30% OFF",
-                    quantity:1
+                    quantity:0
                 },
                 {
                     id: 8,
                     photo: imagePath.food3,
-                    name: "Domino's Pizza",
+                    name: "Domino's 9",
                     line: "Pizza , Fast Food",
                     price1: 299,
                     price2: 359,
                     offer: "30% OFF",
-                    quantity:1
+                    quantity:0
                 },
                 {
                     id: 9,
                     photo: imagePath.food1,
-                    name: "Domino's Pizza",
+                    name: "Domino's 10",
                     line: "Pizza , Fast Food",
                     price1: 299,
                     price2: 359,
                     offer: "30% OFF",
-                    quantity:1
+                    quantity:0
                 },
                 {
                     id: 10,
-                    photo: imagePath.food,
-                    name: "Domino's Pizza",
+                    photo: imagePath.food2,
+                    name: "Domino's 11",
                     line: "Pizza , Fast Food",
                     price1: 299,
                     price2: 359,
                     offer: "30% OFF",
-                    quantity:1
+                    quantity:0
+                },
+                {
+                    id: 11,
+                    photo: imagePath.food3,
+                    name: "Domino's 12",
+                    line: "Pizza , Fast Food",
+                    price1: 299,
+                    price2: 359,
+                    offer: "30% OFF",
+                    quantity:0
                 },
             ],
 
@@ -140,56 +152,37 @@ export default class LatestDeals extends Component {
 
 
     _onNextScrean = (id) => {
-        //   console.log(id)
-        const { navigation } = this.props
-        const { myData } = this.state
-        let newArray = [...myData]
-        // alert(JSON.stringify(newArray[id]))
-        navigation.navigate(navigationStrings.FOOD_DETAILS);
-        // alert(selectItem)
+          console.log(id)
+        
     }
 
 
     buyNow = (id) => {
-        let { itemCount, addTocartITem, myData } = this.state
-        let newArray = [...myData];
-        let index = newArray.findIndex((item) => item.id == id);
-        if (!addTocartITem.includes(newArray[index])) {
-            let finalArray = [...addTocartITem, newArray[index]];
-            this.setState({
-                itemCount: itemCount + 1,
-                addTocartITem: finalArray
-            })
-        }
+        console.log(id)
+        const {myData}=this.state;
+        let newfoodItemAry=[...myData];
+        let index=newfoodItemAry.findIndex((item)=>item.id===id)
+        dispatch({
+            type:types.ADD_CART,
+            payload:{newfoodItemAry , index}
+        })
     }
 
 
     OpenFinalCart=(id)=>{
         const { navigation } = this.props
-        const { myData ,addTocartITem ,itemCount} = this.state
-        let newArray = [...myData]
-        navigation.navigate(navigationStrings.FINAL_CART, { addTocartITem:addTocartITem , itemCount:itemCount });
+        
+        navigation.navigate(navigationStrings.FINAL_CART);
 
     }
 
-    componentDidMount() {
-        const {navigation} = this.props;
-        // let {addTocartITem}=this.this
-        this.focusListener = this.props.navigation.addListener('focus', () => {
-            // alert("sdcjhsdfc")
-            if(this.props.route.params)
-            {
 
-                // alert("sdcjhsdfc")
-                let test=this.props.route.params.addTocartITem
-                this.buyNow(test.id)
-                this.props.route.params=null
-            }
-        });
-      }
     render() {
-        const { navigation } = this.props;
+        const { navigation ,cartAry } = this.props;
         const { myData, buyNOw } = this.state;
+        let len = cartAry.length;
+        
+        
         return (
 
             <View>
@@ -204,7 +197,7 @@ export default class LatestDeals extends Component {
                     />
                     <TouchableOpacity  onPress={()=>this.OpenFinalCart()}>
                     <View style={styles.cartRelative}>
-                        <View style={styles.countAbsolute}><Text>{this.state.itemCount}</Text></View>
+                        <View style={styles.countAbsolute}><Text>{len}</Text></View>
                         <Image style={styles.icon}
                             source={imagePath.cart}
                         />
@@ -216,12 +209,10 @@ export default class LatestDeals extends Component {
                 <Text style={styles.items}>xxxx Items</Text>
 
 
-                <Image style={styles.footwareImg}
-                    source={imagePath.footware}
-                />
+                
 
 
-                <View>
+              
 
 
                     <View>
@@ -236,12 +227,23 @@ export default class LatestDeals extends Component {
                         />
                     </View>
 
-                </View>
+                
             </View>
 
         )
     }
 }
+const mapStateToProps= state=>{
+    return{
+        cartAry: state.home.cartAry
+    }
+}
+
+export default connect(mapStateToProps)(HomePage);
+
+
+
+
 
 const styles = StyleSheet.create({
     rowDirection: {
@@ -292,3 +294,5 @@ const styles = StyleSheet.create({
 
 
 })
+
+

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {  TouchableOpacity , StyleSheet, View , Image} from "react-native";
-import imagePath from "../assets/images/imagePath";
+import imagePath from "../constants/imagePath";
 
 
 

@@ -7,6 +7,7 @@ export default {
     PROFILE : "Profile",
     TAB_ROUTES:"TabRoutes",
     FOOD_DETAILS:"FoodDetails",
+    FINAL_CART:'FinalCart'
     
 
 

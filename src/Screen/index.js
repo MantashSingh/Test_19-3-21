@@ -7,3 +7,6 @@ export {default as Cart} from "./Cart/Cart"
 export {default as Profile} from "./Profile/Profile"
 
 export {default as FoodDetails} from './FoodDetils/FoodDetails'
+
+
+export {default as FinalCart} from './FinalCart/FinalCart'

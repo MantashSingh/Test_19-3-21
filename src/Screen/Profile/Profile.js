@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View,Image , StyleSheet} from "react-native";
 import navigationStrings from "../../constants/navigationStrings";
 
 
-import imagePath from "../../assets/images/imagePath"
+import imagePath from "../../constants/imagePath"
 import * as ImagePicker from 'react-native-image-picker';
 import apis from "../../apis";
 import { userContext } from "../../context/context";

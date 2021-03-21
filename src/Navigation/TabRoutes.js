@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import { Text, View ,StyleSheet, Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {Cart, HomePage, Profile} from "../Screen/index"
-import imagePath from '../assets/images/imagePath';
-
 
 const Tab = createBottomTabNavigator();
 
@@ -11,18 +9,10 @@ function TabRoutes({navigation}) {
   return (
     <Tab.Navigator >
       <Tab.Screen name="Deals" component={HomePage}
-      options={{ headerMode: "none",}}
-    //    options={{
-    //     tabBarIcon: ({ color }) => (
-    //       <Image
-    //         style={styles.Icon}
-    //         source={  imagePath.logoMyntra }/>
-    //    )
-    //        }}
      />
           
       <Tab.Screen name="Cart" component={Cart}
-      options={{ headerShown: false }}
+      
     //   options={{
     //     tabBarIcon: ({ color }) => (
     //       <Image
@@ -40,7 +30,7 @@ function TabRoutes({navigation}) {
        )
            }} /> */}
       <Tab.Screen name="Profile" component={Profile}
-      options={{ headerShown: false }}
+      
       
     //    options={{
     //     tabBarIcon: ({ color }) => (

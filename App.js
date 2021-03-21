@@ -4,6 +4,8 @@ import Routes from "./src/Navigation/Routes";
 import FlashMessage from "react-native-flash-message";
 import { clearUserData, getUserData } from './src/utils/utils';
 import { userContext } from './src/context/context';
+import store from './src/redux/store';
+import { Provider } from 'react-redux';
 
 
 
@@ -53,7 +55,7 @@ export default class App extends Component{
   render(){
     const {isLogin}   =this.state;
     return(
-      <userContext.Provider
+      <Provider store={store}
         value={{
           isLogin:isLogin,
           onLogin:this.onLogin,
@@ -61,7 +63,7 @@ export default class App extends Component{
         }}>
       <Routes/>
       <FlashMessage position="top" />
-</userContext.Provider>
+</Provider>
     )  
   }
 }

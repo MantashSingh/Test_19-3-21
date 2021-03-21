@@ -17,7 +17,7 @@ const Stack = createStackNavigator();
  
 
 export default function () {
-    const userDataContext = useContext(userContext);
+    // const userDataContext = useContext(userContext);
   return (
     
     <NavigationContainer>
@@ -34,9 +34,10 @@ export default function () {
        {MainStack()} */}
 
        {/* {userDataContext.isLogin?<>{MainStack()}</>:<>{AuthStack()}</>} */}
-
        {AuthStack()}
-        {MainStack()}
+       {MainStack()}
+       
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

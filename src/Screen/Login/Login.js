@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Text, View, TouchableOpacity , StyleSheet,Image , ActivityIndicator  , ImageBackground } from 'react-native';
-import imagePath from '../../assets/images/imagePath';
+import imagePath from '../../constants/imagePath';
 import Loader from '../../Component/Loader';
 import TextInputComponent from '../../Component/TextaInputComponent'
 import navigationStrings from '../../constants/navigationStrings';

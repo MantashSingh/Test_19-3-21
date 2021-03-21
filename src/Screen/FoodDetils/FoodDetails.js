@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native"
-import imagePath from "../../assets/images/imagePath";
+import imagePath from "../../constants/imagePath";
 
 
 export default class FoodDetails extends Component {
