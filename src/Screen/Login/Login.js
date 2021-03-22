@@ -9,6 +9,7 @@ import validations from "../../utils/validations";
 import apis from "../../apis";
 import { userContext } from '../../context/context';
 
+import actions from "../../redux/actions"
 
 
 export default class Login extends Component {
@@ -69,21 +70,19 @@ checkData = () => {
         this.setState({
             isvalid: true
         })
-        apis.login({ email, password })
+        actions.login({email: email, password: password})
             .then(response => {
                
-                    console.log(response)
+                    console.log(response +"   1")
                     this.props.navigation.navigate("VerificationScreen")
                     
                     
-                    this.context.onLogin();
+                    
                     showMessage({
                         type:"success",
                         message:"Login done successfully "
                     })
-                    this.setState({
-                            isvalid: false
-                        })
+                    
                     
             }).catch((error) => {
                 this.setState({ isvalid: false }),

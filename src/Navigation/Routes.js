@@ -3,41 +3,40 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import AuthStack from './AuthStack';
 import MainStack from './MainStack';
-import { userContext } from '../context/context';
+import {connect } from "react-redux"
 
 
 
 const Stack = createStackNavigator();
-// let apiData= new{ FormData();
-// apiData.appen("image",})
-// export function uploadImage(data={}){
-//     const headers = {'Content-Type': 'multipart/form-data'};
-//     return apiPost(UPLOAD_IMAGE,data,headers);
-//  }
+
  
 
-export default function () {
+function Routes(props) {
     // const userDataContext = useContext(userContext);
+    const {isLoggedin, userData}=props;
+     console.log("in routes=> ", userData)
   return (
     
     <NavigationContainer>
       <Stack.Navigator>
-          {/* {isLogin?<>
-            {MainStack()}
-            {AuthStack()}
          
-          </>:<>
-          {AuthStack()}
-          {MainStack()}
-          </>} */}
-       {/* {!isLogin && AuthStack()}
+      {isLoggedin?<>{MainStack()}</>:<>{AuthStack()}</>}
+
+       {/* {AuthStack()}
        {MainStack()} */}
 
-       {/* {userDataContext.isLogin?<>{MainStack()}</>:<>{AuthStack()}</>} */}
-       
-       {AuthStack()}
-       {MainStack()}
+
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+
+
+const mapStateToProps=state=>{
+  return {
+      isLoggedin: state.auth.isLoggedin,
+      userData:state.auth.userData,
+  }
+}
+
+export default connect(mapStateToProps)(Routes);

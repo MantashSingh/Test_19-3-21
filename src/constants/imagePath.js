@@ -12,7 +12,8 @@ export default {
     search:require("../assets/images/search.png"),
     heart:require("../assets/images/heart.png"),
     cart:require("../assets/images/cart.png"),
-    delete :require("../assets/images/cancel.png")
+    delete :require("../assets/images/cancel.png"),
+    logout :require('../assets/images/logout.png')
 
 
 }

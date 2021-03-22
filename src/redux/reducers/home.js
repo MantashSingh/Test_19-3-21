@@ -14,7 +14,7 @@ export default function counterReducer(state = initialState, action) {
         let newAr = [...state.cartAry, newfoodItemAry[index]];
         newfoodItemAry[index].quantity += 1;
         // console.log(newAr);
-        return {...state, cartAry: [...newAr]};
+        return {...state, cartAry: [ ...newAr]};
       }
       else{
         showMessage({
