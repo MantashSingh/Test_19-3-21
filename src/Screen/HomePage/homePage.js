@@ -9,7 +9,10 @@ import imagePath from "../../constants/imagePath"
 import store from '../../redux/store'
 import types from "../../redux/types"
 import { connect } from "react-redux"
-const{dispatch} = store;
+
+import actions from "../../redux/actions"
+const {dispatch} = store;
+
 
 class HomePage extends Component {
     
@@ -143,8 +146,7 @@ class HomePage extends Component {
                 },
             ],
 
-            itemCount: 0,
-            addTocartITem: []
+            
 
 
         }
@@ -162,14 +164,11 @@ class HomePage extends Component {
         const {myData}=this.state;
         let newfoodItemAry=[...myData];
         let index=newfoodItemAry.findIndex((item)=>item.id===id)
-        dispatch({
-            type:types.ADD_CART,
-            payload:{newfoodItemAry , index}
-        })
+       actions.addCart(newfoodItemAry , index)
     }
 
 
-    OpenFinalCart=(id)=>{
+    OpenFinalCart=()=>{
         const { navigation } = this.props
         
         navigation.navigate(navigationStrings.FINAL_CART);

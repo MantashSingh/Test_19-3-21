@@ -11,7 +11,8 @@ export default {
     food3 :require("../assets/images/food3.jpg"),
     search:require("../assets/images/search.png"),
     heart:require("../assets/images/heart.png"),
-    cart:require("../assets/images/cart.png")
+    cart:require("../assets/images/cart.png"),
+    delete :require("../assets/images/cancel.png")
 
 
 }

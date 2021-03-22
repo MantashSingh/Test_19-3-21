@@ -55,7 +55,7 @@ export default class App extends Component{
   render(){
     const {isLogin}   =this.state;
     return(
-      <Provider store={store}
+      <Provider store={store }
         value={{
           isLogin:isLogin,
           onLogin:this.onLogin,
