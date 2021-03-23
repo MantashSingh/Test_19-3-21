@@ -13,7 +13,10 @@ export default {
     heart:require("../assets/images/heart.png"),
     cart:require("../assets/images/cart.png"),
     delete :require("../assets/images/cancel.png"),
-    logout :require('../assets/images/logout.png')
+    logout :require('../assets/images/logout.png'),
+    google:require('../assets/images/google.png'),
+    facebook:require('../assets/images/facebook.png'),
+    mail:require('../assets/images/mail.png')
 
 
 }

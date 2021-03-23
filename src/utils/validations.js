@@ -91,15 +91,15 @@ export default function(data) {
 		}
 	}
 
-	// if (phoneNumber !== undefined) {
-	// 	let emptyValidationText = checkEmpty(phoneNumber, 'phone number');
-	// 	if (emptyValidationText !== '') {
-	// 		return emptyValidationText;
-	// 	}
-	// 	if (!/^[0][1-9]$|^[1-9]\d{8,14}$/.test(phoneNumber)) {
-	// 		return 'Please enter valid mobile number';
-	// 	}
-	// }
+	if (phoneNumber !== undefined) {
+		let emptyValidationText = checkEmpty(phoneNumber, 'phone number');
+		if (emptyValidationText !== '') {
+			return emptyValidationText;
+		}
+		if (!/^[0][1-9]$|^[1-9]\d{8,14}$/.test(phoneNumber)) {
+			return 'Please enter valid mobile number';
+		}
+	}
 
 	
 }

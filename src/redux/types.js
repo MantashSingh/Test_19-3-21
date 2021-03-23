@@ -6,6 +6,8 @@ export default {
     DELETE : "DELETE",
     LOGIN : "LOGIN" , 
     ON_LOGOUT : "ON_LOGOUT",
-    ISLOGIN : "ISLOGIN"
+    ISLOGIN : "ISLOGIN",
+    OTP_VERIFY :"OTP_VERIFY"
+    
     
 }

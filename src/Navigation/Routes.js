@@ -21,6 +21,7 @@ function Routes(props) {
       <Stack.Navigator>
          
       {isLoggedin?<>{MainStack()}</>:<>{AuthStack()}</>}
+      
 
        {/* {AuthStack()}
        {MainStack()} */}

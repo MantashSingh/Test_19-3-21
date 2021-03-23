@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {  TextInput , StyleSheet} from "react-native";
 
 
-function TextaInputComponent({placeholder , onChangeText ,secureTextEntry , onfocus , value}){
+function TextaInputComponent({placeholder , onChangeText ,secureTextEntry , onfocus , value , keyboardType}){
 
     return(
         <TextInput 
@@ -12,6 +12,7 @@ function TextaInputComponent({placeholder , onChangeText ,secureTextEntry , onfo
         secureTextEntry={secureTextEntry}
         onFocus={onfocus}
         value={value}
+        keyboardType={keyboardType}
 
         ></TextInput>
 

@@ -16,8 +16,8 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        email: "",
-        password: "",
+        phoneNumber: "",
+        
         isvalid:""
     };
   }
@@ -25,29 +25,21 @@ export default class Login extends Component {
 
 
   
-  setEmail = (text) => {
+  setNumber = (text) => {
 
     this.setState({
-        email: text
+        phoneNumber: text
     })
 
 
 }
 
 
-setPassword = (text) => {
-
-    this.setState({
-        password: text
-    })
-
-
-}
 
 isValidate = () => {
-    const { name, dob, email, password, reEnterPassword } = this.state;
+    const { phoneNumber } = this.state;
 
-    let errorMessage = validations({email: email, password: password})
+    let errorMessage = validations({phoneNumber:phoneNumber})
     // alert()
     if (errorMessage) {
 
@@ -64,23 +56,26 @@ isValidate = () => {
 
 
 checkData = () => {
-    const { email, password } = this.state;
+    const { phoneNumber} = this.state;
 
     if (this.isValidate()) {
         this.setState({
             isvalid: true
         })
-        actions.login({email: email, password: password})
+        actions.loginWithOTP({contactDetails:{phoneNo: (phoneNumber),
+          countryCode: "+91",
+          countryCodeISO: "IN"}
+        })
             .then(response => {
                
                     console.log(response +"   1")
-                    this.props.navigation.navigate("VerificationScreen")
+                    this.props.navigation.navigate("VerificationScreen" , {userId:response.data.userId})
                     
                     
                     
                     showMessage({
                         type:"success",
-                        message:"Login done successfully "
+                        message:"OTP sent successfully "
                     })
                     
                     
@@ -143,8 +138,8 @@ checkData = () => {
         
 
 
-      <TextInputComponent placeholder="Email" onChangeText={(text) => this.setEmail(text)}  />
-    <TextInputComponent placeholder="Password" onChangeText={(text) => this.setPassword(text)} secureTextEntry={true}/>
+      <TextInputComponent placeholder="Phone Number" onChangeText={(text) => this.setNumber(text)} keyboardType={"numeric"} />
+    {/* <TextInputComponent placeholder="Password" onChangeText={(text) => this.setPassword(text)} secureTextEntry={true}/> */}
         <TouchableOpacity
           style={styles.sendOTPTouch}
           onPress={() =>this.checkData()
@@ -159,7 +154,7 @@ checkData = () => {
 
         
 
-        {/* <View
+        <View
           style={{
             flexDirection: 'row',
             marginVertical: 10,
@@ -195,11 +190,11 @@ checkData = () => {
 
         <Text style={styles.Tc}>By continuing , you agree to our </Text>
 
-        <View style={{flexDirection: 'row', marginHorizontal: 60}}>
+        <View style={{flexDirection: 'row', marginHorizontal: 30}}>
           <Text style={styles.last}>Terms of Service</Text>
           <Text style={styles.last}> Privacy Policy </Text>
           <Text style={styles.last}> Content Policy </Text>
-        </View> */}
+        </View>
       </View>
     </ImageBackground>
   </View>
@@ -230,7 +225,7 @@ const styles= StyleSheet.create({
         flex: 1,
       },
       container: {
-        marginTop: 300,
+        marginTop: 190,
       },
       sendOTPTouch: {
         backgroundColor: 'black',
@@ -247,7 +242,7 @@ const styles= StyleSheet.create({
       },
       line: {
         height: 1,
-        width: 150,
+        width: 125,
         backgroundColor: 'white',
         marginVertical: 10,
         marginHorizontal: 10,
@@ -296,13 +291,13 @@ const styles= StyleSheet.create({
         marginLeft: 15,
     
         marginTop: 14,
-        marginRight: 40,
+        marginRight: 10,
       },
       googleText: {
         color: 'black',
         fontSize: 15,
         marginLeft: 15,
-        marginRight: 45,
+        marginRight: 20,
     
         marginTop: 14,
       },

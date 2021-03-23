@@ -3,10 +3,70 @@ import { Text, StyleSheet, View, Image  , TouchableOpacity} from 'react-native'
 import GoButton from '../../Component/GoButton'
 import Header from '../../Component/Header'
 import OtpInput from '../../Component/OtpInput'
+import actions from '../../redux/actions'
+import { showMessage, hideMessage } from "react-native-flash-message";
+
+
 
 
 
 export default class VerificationScreen extends Component {
+
+
+
+    isValidate = () => {
+        const { phoneNumber } = this.state;
+    
+        let errorMessage = validations({phoneNumber:phoneNumber})
+        // alert()
+        if (errorMessage) {
+    
+            showMessage({
+                message: errorMessage,
+                icon:"warning",
+                type: "danger",
+            });
+            return false
+        }
+    
+        return true
+    }
+
+    checkData = () => {
+        // alert()
+        const{userId} = this.props.route.params;
+    console.log(userId)
+       
+            actions.OTPVerify({userId , otp:'12345' , deviceToken:"123"
+        
+            })
+                .then(response => {
+                   
+                        console.log(response ,"   verify")
+                        // this.props.navigation.navigate("Ver" , {userId:response.data.userId})
+                        
+                        
+                        
+                        showMessage({
+                            type:"success",
+                            message:"OTP verified "
+                        })
+                        
+                        
+                }).catch((error) => {
+                    this.setState({ isvalid: false }),
+                    showMessage({
+                        type:"danger",
+                        message:"Login failed "
+                    })
+                    
+                        console.log(error)
+                })
+        
+    
+    }
+    
+    
             
             onBack=()=>{this.props.navigation.navigate("Login")}
     render() {
@@ -37,7 +97,7 @@ export default class VerificationScreen extends Component {
                     <Text style={styles.footer1}>Didn't receive the code? </Text>
                     <TouchableOpacity
           style={styles.sendOTPTouch}
-          onPress={() =>this.props.navigation.navigate("TabRoutes")
+          onPress={() =>{this.checkData()}
             // navigation.navigate(navigationStrings.VERIFICATION_SCREEN, {mobile:"7988016778" }) 
           }>
           <Text style={styles.sendOTPText}> Go To HomePage</Text>

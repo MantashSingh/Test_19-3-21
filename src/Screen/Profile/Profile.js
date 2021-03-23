@@ -5,9 +5,9 @@ import { Text, StyleSheet, View, TouchableOpacity, Image } from 'react-native'
 import imagePath from '../../constants/imagePath';
 import actions from '../../redux/actions';
 
-import store from '../../redux/store';
 
-const{dispatch} = store
+
+
 
 export default class Profile extends Component {
     render() {
