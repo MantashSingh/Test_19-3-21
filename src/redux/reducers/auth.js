@@ -12,7 +12,7 @@ export default function counterReducer(state=initialState, action){
 
     switch(action.type){
         case ActionTypes.LOGIN:{
-            const {userData}={...action.payload};
+            const userData = action.payload;
             console.log(userData , "r")
             return{...state}
         }
@@ -26,7 +26,7 @@ export default function counterReducer(state=initialState, action){
 }
 
             case ActionTypes.OTP_VERIFY:{
-                const userData={...action.payload};
+                const userData=action.payload;
                 console.log(userData , "reducer")
                 return{...state,isLoggedin:true, userData}
 }

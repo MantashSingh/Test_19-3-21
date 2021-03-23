@@ -1,16 +1,37 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, Image  , TouchableOpacity} from 'react-native'
+import { Text, StyleSheet, View, Image  , TouchableOpacity,TextInput , Button} from 'react-native'
 import GoButton from '../../Component/GoButton'
 import Header from '../../Component/Header'
 import OtpInput from '../../Component/OtpInput'
 import actions from '../../redux/actions'
 import { showMessage, hideMessage } from "react-native-flash-message";
 
-
+import OTPTextView from 'react-native-otp-textinput';
 
 
 
 export default class VerificationScreen extends Component {
+
+    state = {
+        otpInput: '',
+        inputText: '',
+      };
+    
+      alertText = () => {
+        const {otpInput = ''} = this.state;
+        if (otpInput) {
+          Alert.alert(otpInput);
+        }
+      };
+    
+      clear = () => {
+        this.input1.clear();
+      };
+    
+      updateOtpText = () => {
+        // will automatically trigger handleOnTextChange callback passed
+        this.input1.setValue(this.state.inputText);
+      };
 
 
 
@@ -35,9 +56,10 @@ export default class VerificationScreen extends Component {
     checkData = () => {
         // alert()
         const{userId} = this.props.route.params;
+        const {otpInput} =this.state
     console.log(userId)
        
-            actions.OTPVerify({userId , otp:'12345' , deviceToken:"123"
+            actions.OTPVerify({userId , otp:otpInput , deviceToken:"123"
         
             })
                 .then(response => {
@@ -83,14 +105,28 @@ export default class VerificationScreen extends Component {
 
                 </View>
 
-                <View style={{flexDirection:'row',}}>
-                    <OtpInput/>
-                    <OtpInput/>
-                    <OtpInput/>
-                    <OtpInput/>
-                    <OtpInput/>
-                    <OtpInput/>
-                    
+                <View>
+
+
+                <View style={styles.container}>
+    
+        
+        
+        
+        
+        <OTPTextView
+          ref={(e) => (this.input1 = e)}
+          containerStyle={styles.textInputContainer}
+          textInputStyle={[styles.roundedTextInput, {borderRadius: 100}]}
+          handleTextChange={(text) => this.setState({otpInput: text})}
+          inputCount={5}
+          keyboardType="numeric"
+        />
+      </View>
+
+
+
+                   
                 </View>
 
                 <View>
@@ -141,6 +177,50 @@ sendOTPTouch: {
     fontSize: 18,
     textAlign: 'center',
     marginVertical: 12,
+  },
+
+
+
+  container: {
+    // flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // backgroundColor: '#F5FCFF',
+    padding: 5,
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    fontSize: 22,
+    fontWeight: '500',
+    textAlign: 'center',
+    // color: '#333333',
+    marginBottom: 20,
+  },
+  textInputContainer: {
+    marginBottom: 20,
+  },
+  roundedTextInput: {
+    // borderRadius: 10,
+    borderWidth: 1,
+  },
+ 
+  textInput: {
+    height: 40,
+    width: '80%',
+    borderColor: '#000',
+    borderWidth: 1,
+    padding: 10,
+    fontSize: 16,
+    letterSpacing: 5,
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  buttonStyle: {
+    marginHorizontal: 20,
   },
 
 
