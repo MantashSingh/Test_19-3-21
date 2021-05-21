@@ -16,7 +16,15 @@ export default {
     logout :require('../assets/images/logout.png'),
     google:require('../assets/images/google.png'),
     facebook:require('../assets/images/facebook.png'),
-    mail:require('../assets/images/mail.png')
+    mail:require('../assets/images/mail.png'),
+
+
+    order:require('../assets/images/order.png'),
+    goOut :require("../assets/images/goOut.png"),
+    pro :require('../assets/images/pro.png'),
+    donate : require('../assets/images/donate.png'),
+    account : require('../assets/images/account.png')
+    
 
 
 }

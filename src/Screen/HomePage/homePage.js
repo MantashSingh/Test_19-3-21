@@ -11,7 +11,7 @@ import types from "../../redux/types"
 import { connect } from "react-redux"
 
 import actions from "../../redux/actions"
-const {dispatch} = store;
+
 
 
 class HomePage extends Component {

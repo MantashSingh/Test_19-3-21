@@ -10,6 +10,7 @@ import apis from "../../apis";
 import { userContext } from '../../context/context';
 
 import actions from "../../redux/actions"
+import colors from '../../constants/color';
 
 
 export default class Login extends Component {
@@ -228,7 +229,7 @@ const styles= StyleSheet.create({
         marginTop: 190,
       },
       sendOTPTouch: {
-        backgroundColor: 'black',
+        backgroundColor: colors.themeColor,
         height: 50,
         marginHorizontal: 30,
         borderRadius: 10,

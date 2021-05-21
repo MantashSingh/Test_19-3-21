@@ -20,11 +20,11 @@ function Routes(props) {
     <NavigationContainer>
       <Stack.Navigator>
          
-      {isLoggedin?<>{MainStack()}</>:<>{AuthStack()}</>}
+      {/* {isLoggedin?<>{MainStack()}</>:<>{AuthStack()}</>} */}
       
 
-       {/* {AuthStack()}
-       {MainStack()} */}
+       {AuthStack()}
+       {MainStack()}
 
 
       </Stack.Navigator>

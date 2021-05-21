@@ -14,6 +14,7 @@ import {
     ScrollView,
 } from 'react-native';
 import navigationStrings from '../constants/navigationStrings';
+import colors from '../constants/color';
 // import {Dimensions } from "react-native";
 
 
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
         marginLeft: 2
     },
     offer: {
-        color: 'red'
+        color: colors.themeColor
     },
     buyNow:{
         height:30,
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
         marginRight:15,
         marginLeft:5,
         borderRadius:30,
-        backgroundColor:'#FF3F6D'
+        backgroundColor:colors.themeColor
 
     },
     buyText:{

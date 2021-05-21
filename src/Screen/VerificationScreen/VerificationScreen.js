@@ -17,21 +17,7 @@ export default class VerificationScreen extends Component {
         inputText: '',
       };
     
-      alertText = () => {
-        const {otpInput = ''} = this.state;
-        if (otpInput) {
-          Alert.alert(otpInput);
-        }
-      };
-    
-      clear = () => {
-        this.input1.clear();
-      };
-    
-      updateOtpText = () => {
-        // will automatically trigger handleOnTextChange callback passed
-        this.input1.setValue(this.state.inputText);
-      };
+      
 
 
 

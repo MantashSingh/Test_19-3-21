@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import Routes from "./src/Navigation/Routes";
 import FlashMessage from "react-native-flash-message";
 import { clearUserData, getUserData } from './src/utils/utils';
-import { userContext } from './src/context/context';
+
 import store from './src/redux/store';
 
 import { connect , Provider } from 'react-redux';

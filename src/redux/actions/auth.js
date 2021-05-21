@@ -1,5 +1,5 @@
 import { apiDelete, apiGet, apiPost, apiPut, clearUserData, getItem, setItem, setUserData , } from '../../utils/utils';
-import { LOGIN, SIGNUP, OTP_VERIFY } from '../../config/urls';
+import { LOGIN, SIGNUP, OTP_VERIFY , USER_SEARCH } from '../../config/urls';
 import types from '../types';
 import store from '../store';
 
@@ -85,5 +85,25 @@ export function OTPVerify(data = {}) {
 
 }
 
+
+
+
+
+export function UserData(data = {}) {
+
+
+
+  return new Promise((resolve, reject) => {
+    apiPost(USER_SEARCH , data).then(res => {
+    
+      console.log(res , "User Data")
+
+      resolve(res);
+    }).catch(error => {
+      reject(error);
+    })
+  })
+
+}
 
 

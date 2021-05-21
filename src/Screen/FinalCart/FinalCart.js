@@ -10,6 +10,7 @@ import {connect} from 'react-redux';
 
 import action from '../../redux/actions';
 import imagePath from '../../constants/imagePath';
+import colors from '../../constants/color';
 const {dispatch} = store;
 
 class FinalCart extends Component {
@@ -151,7 +152,7 @@ class FinalCart extends Component {
             </View>
             <View style={styles.paymentRow}>
               <Text style={{opacity: 0.7}}>Discount on MRP</Text>
-              <Text style={{marginLeft: 'auto', color: '#54baa4'}}>
+              <Text style={{marginLeft: 'auto', color: colors.themeColor}}>
                 {' '}
                 - Rs. {totalPrice2 - total}
               </Text>
@@ -165,7 +166,7 @@ class FinalCart extends Component {
                 }}>
                 Rs.99
               </Text>
-              <Text style={{color: '#54baa4'}}> FREE</Text>
+              <Text style={{color: colors.themeColor}}> FREE</Text>
             </View>
             <View
               style={{
@@ -260,7 +261,7 @@ const styles = StyleSheet.create({
     paddingLeft: 12,
     paddingTop: 2,
 
-    backgroundColor: '#FF3F6D',
+    backgroundColor: colors.themeColor,
     borderRadius: 50,
     width: 40,
     height: 40,
@@ -277,7 +278,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     paddingLeft: 16,
 
-    backgroundColor: '#FF3F6D',
+    backgroundColor: colors.themeColor,
     borderRadius: 100,
     width: 40,
     height: 40,
@@ -310,7 +311,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   placeOrder: {
-    backgroundColor: '#FF3F6D',
+    backgroundColor: colors.themeColor,
     height: 50,
     marginLeft: 5,
     marginRight: 5,
